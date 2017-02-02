@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background: url('./background.jpg') no-repeat center center fixed;
+  background: url('assets/images/background.jpg') no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   padding: 0;
@@ -16,4 +16,7 @@ body {
 #root {
   background: rgba(0, 0, 0, 0.75);
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
