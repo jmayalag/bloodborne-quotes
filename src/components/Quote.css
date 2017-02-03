@@ -1,9 +1,6 @@
 .Quote {
   font-family: 'Libre Baskerville', serif;
   color: #897859;
-  width: 60%;
-  padding: 40px 50px;
-  margin: 20px auto auto auto;
 }
 
 .Quote-author {
@@ -16,6 +13,8 @@
 
 .Quote-text {
   border: 1px solid #373938;
+  height: 300px;
+  width: 600px;
   padding: 10px;
   background: rgba(24, 25, 27, 0.65);
   border-radius: 1px;
@@ -24,7 +23,7 @@
 .Quote-text p {
   font-weight: 400;
   font-size: 1.25em;
-  border-bottom: 1px solid #373938;
   line-height: 1.5em;
-  display: inline;
+  text-align: justify;
+  margin-top: 0;
 }
