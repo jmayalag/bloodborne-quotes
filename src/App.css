@@ -21,3 +21,15 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.Buttons {
+  width: 50px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.Buttons .Button {
+  margin-right: 20px;
+}
