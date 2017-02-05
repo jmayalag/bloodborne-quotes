@@ -8,7 +8,7 @@ const styles = {
   img: {
     width: '60px',
     height: '60px',
-    border: '1px groove #373938',
+    border: '1px solid #373938',
     borderRadius: 2,
   }
 }
