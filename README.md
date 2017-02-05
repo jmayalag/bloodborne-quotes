@@ -1,5 +1,5 @@
 # Bloodborne Quotes
-Just another random quotes generator.
+Just another random quotes generator using React.
 It gives you quotes from the game [Bloodborne](https://en.wikipedia.org/wiki/Bloodborne) developed by FromSoftware.
 
 # Demo
@@ -10,3 +10,8 @@ https://jmayalag.github.io/bloodborne-quotes/
 
 It was inspired by the loading screen from the game.
 ![Original](http://i.imgur.com/ZZ4dCny.jpg)
+
+# TODO
+- Death screen
+- Sounds
+- Transitions
