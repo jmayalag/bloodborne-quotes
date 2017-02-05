@@ -2,13 +2,7 @@ import React from 'react'
 import Thumbnail from './Thumbnail'
 
 import deco from './deco.png'
-import insight from '../assets/images/insight.jpg'
 import './Quote.css'
-
-const thumb = {
-  img: insight,
-  alt: 'Insight'
-}
 
 const Quote = (props) => {
   const description = props.quote.text.split('\n').map((line, i) => <p key={i}>{line}</p>)
@@ -17,10 +11,10 @@ const Quote = (props) => {
   <div className="Quote">
     <div className="Quote-author">
         <div className="Quote-author-title">
-          <Thumbnail image={thumb} />
+          <Thumbnail image={props.quote.image} alt={props.quote.author} />
           {props.quote.author}
         </div>
-        <img className="Quote-author-deco" src={deco} />
+        <img className="Quote-author-deco" src={deco} alt="decoration" />
     </div>
     <div className="Quote-text">
       {description}

@@ -15,15 +15,13 @@ const styles = {
 
 const Thumbnail = (props) => (
   <div className="Thumbnail" style={styles.div}>
-    <img src={props.image.img} alt={props.image.alt} style={styles.img} />
+    <img src={props.image} alt={props.alt} style={styles.img} />
   </div>
 )
 
 Thumbnail.propTypes = {
-  image: PropTypes.shape({
-    img: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired
-  }).isRequired
+  image: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
 }
 
 export default Thumbnail
