@@ -1,9 +1,19 @@
 {
-  "main.css": "static/css/main.b23bd958.css",
-  "main.css.map": "static/css/main.b23bd958.css.map",
-  "main.js": "static/js/main.a3216b54.js",
-  "main.js.map": "static/js/main.a3216b54.js.map",
-  "static/media/background.jpg": "static/media/background.ba0aff8c.jpg",
+  "main.css": "static/css/main.5eb61199.css",
+  "main.css.map": "static/css/main.5eb61199.css.map",
+  "main.js": "static/js/main.74e1c3b8.js",
+  "main.js.map": "static/js/main.74e1c3b8.js.map",
+  "static/media/Ludwig.png": "static/media/Ludwig.edfef95a.png",
+  "static/media/background.png": "static/media/background.e35bfc49.png",
   "static/media/bell.jpg": "static/media/bell.a0c2533c.jpg",
-  "static/media/insight.jpg": "static/media/insight.0437a79c.jpg"
+  "static/media/deco.png": "static/media/deco.bcabb1f5.png",
+  "static/media/djura.png": "static/media/djura.67e17919.png",
+  "static/media/doll.png": "static/media/doll.111bfa6a.png",
+  "static/media/eileen.png": "static/media/eileen.a90f6fa4.png",
+  "static/media/empty-phantasm-shell.jpg": "static/media/empty-phantasm-shell.82553f0d.jpg",
+  "static/media/father-gascoigne.jpg": "static/media/father-gascoigne.96d36586.jpg",
+  "static/media/hunter.png": "static/media/hunter.b19c43a4.png",
+  "static/media/huntsman.png": "static/media/huntsman.35ba7bc7.png",
+  "static/media/insight.jpg": "static/media/insight.0437a79c.jpg",
+  "static/media/micolash.jpg": "static/media/micolash.9bae0ddc.jpg"
 }
