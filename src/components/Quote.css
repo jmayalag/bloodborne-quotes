@@ -16,13 +16,12 @@
 }
 
 .Quote-author-deco {
-  width: 900px;
+  width: 100%;
 }
 
 .Quote-text {
   box-sizing: border-box;
   border: 1px solid #373938;
-  width: 900px;
   height: 330px;
   padding: 10px;
   background: rgba(24, 25, 27, 0.65);
@@ -34,6 +33,5 @@
   font-weight: 400;
   font-size: 1.5em;
   line-height: 1.25em;
-  
   margin-top: 0;
 }
