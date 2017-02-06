@@ -6,6 +6,9 @@ import quotes from './assets/quotes'
 import insight from './assets/images/insight.jpg'
 import bell from './assets/images/bell.jpg'
 
+import insightSound from './assets/sounds/insight.mp3'
+import bellSound from './assets/sounds/bell.mp3'
+
 import './App.css';
 
 const randomQuote = () => {
@@ -21,8 +24,11 @@ class App extends Component {
     this.state = {
       quote: randomQuote()
     }
+
+    this.currentSound = null
     this.newQuote = this.newQuote.bind(this)
     this.tweet = this.tweet.bind(this)
+    this.play = this.play.bind(this)
   }
 
   newQuote() {
@@ -33,10 +39,20 @@ class App extends Component {
     this.setState({
       quote: newQuote
     })
+    this.play(insightSound)
   }
 
   tweet() {
     console.log('tweet')
+    this.play(bellSound)
+  }
+
+  play(sound) {
+    if(this.currentSound){
+      this.currentSound.pause()
+    }
+    this.currentSound = new Audio(sound)
+    this.currentSound.play()
   }
 
   render() {
