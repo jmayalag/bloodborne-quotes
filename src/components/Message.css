@@ -1,0 +1,14 @@
+.Message {
+  font-weight: 400;
+  font-size: 4em;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.95);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

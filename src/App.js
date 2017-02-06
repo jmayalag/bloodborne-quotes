@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Quote from './components/Quote'
 import Button from './components/Button'
+import Message from './components/Message'
+
 import quotes from './assets/quotes'
+import messages from './assets/messages'
 
 import insight from './assets/images/insight.jpg'
 import bell from './assets/images/bell.jpg'
@@ -11,43 +14,58 @@ import bellSound from './assets/sounds/bell.mp3'
 
 import './App.css';
 
-const randomQuote = () => {
-  const min = 0
-  const max = quotes.length
-  const random = Math.floor(Math.random() * (max - min)) + min
-  return quotes[random]
+
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min
+
+const randomElement = (array) => {
+  const random = randomInt(0, array.length)
+  return array[random]
 }
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      quote: randomQuote()
+      quote: randomElement(quotes),
+      showMessage: false,
     }
 
     this.currentSound = null
     this.newQuote = this.newQuote.bind(this)
     this.tweet = this.tweet.bind(this)
-    this.play = this.play.bind(this)
+    this.player = this.player.bind(this)
   }
 
   newQuote() {
     let newQuote = this.state.quote
     while(newQuote.text === this.state.quote.text){
-      newQuote = randomQuote()
+      newQuote = randomElement(quotes)
     }
     this.setState({
       quote: newQuote
     })
-    this.play(insightSound)
+    
+    if (Math.random() <= 0.6) {
+      this.showMessage()
+    }
+  }
+
+  showMessage() {
+    this.setState({
+        showMessage: true
+      })
+      setTimeout(() => {
+        this.setState({
+          showMessage: false
+        })
+      }, 2000)
   }
 
   tweet() {
     console.log('tweet')
-    this.play(bellSound)
   }
 
-  play(sound) {
+  player(sound) {
     if(this.currentSound){
       this.currentSound.pause()
     }
@@ -55,14 +73,19 @@ class App extends Component {
     this.currentSound.play()
   }
 
+  renderMessage() {
+    return <Message message={randomElement(messages)} player={this.player} />
+  }
+
   render() {
     return (
       <div className="App">
         <Quote quote={this.state.quote} />
         <div className="Buttons">
-          <Button text="New" img={insight} onClick={this.newQuote} />
-          <Button text="Tweet" img={bell} onClick={this.tweet} />
+          <Button text="New" img={insight} onClick={this.newQuote} sound={insightSound} player={this.player} />
+          <Button text="Tweet" img={bell} onClick={this.tweet} sound={bellSound} player={this.player} />
         </div>
+        {this.state.showMessage && this.renderMessage()}
       </div>
     );
   }
