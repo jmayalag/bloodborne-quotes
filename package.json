@@ -7,7 +7,10 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "gsap": "^1.19.1",
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2"
   },
   "scripts": {

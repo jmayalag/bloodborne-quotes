@@ -17,11 +17,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .Buttons {
   width: 50px;
   margin-top: 20px;
@@ -29,7 +24,24 @@
   justify-content: space-between;
 }
 
-
 .Buttons .Button {
   margin-right: 20px;
+}
+
+.message-enter {
+  opacity: 0.01;
+}
+
+.message-enter.message-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.message-leave {
+  opacity: 1;
+}
+
+.message-leave.message-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CSSTransitionGroup from 'react-addons-css-transition-group'
 import Quote from './components/Quote'
 import Button from './components/Button'
 import Message from './components/Message'
@@ -66,15 +67,17 @@ class App extends Component {
   }
 
   player(sound) {
-    if(this.currentSound){
-      this.currentSound.pause()
+    const newSound = new Audio(sound)
+    const playNew = () => newSound.play()
+    if (this.currentSound){
+      this.currentSound.pause().then(playNew)
+    } else {
+      playNew()
     }
-    this.currentSound = new Audio(sound)
-    this.currentSound.play()
   }
 
   renderMessage() {
-    return <Message message={randomElement(messages)} player={this.player} />
+    return 
   }
 
   render() {
@@ -85,7 +88,7 @@ class App extends Component {
           <Button text="New" img={insight} onClick={this.newQuote} sound={insightSound} player={this.player} />
           <Button text="Tweet" img={bell} onClick={this.tweet} sound={bellSound} player={this.player} />
         </div>
-        {this.state.showMessage && this.renderMessage()}
+        <Message message={randomElement(messages)} player={this.player} showMessage={this.state.showMessage} />
       </div>
     );
   }

@@ -1,14 +1,49 @@
-.Message {
+.Message-container {
   font-weight: 400;
   font-size: 4em;
   white-space: nowrap;
   background: rgba(0, 0, 0, 0.95);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 0;
   left: 0;
+  top: 0;
+}
+
+.Message-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Message-text.left {
+  opacity: 0.4;
+}
+
+.Message-text.right {
+  opacity: 0.9;
+}
+
+.Message-text.shine {
+  opacity: 0.9;
+  text-shadow: 0 0 30px;
+}
+
+.example-enter {
+  opacity: 0.1;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.1;
+  transition: opacity 1s ease-in;
 }
