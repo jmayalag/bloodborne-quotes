@@ -1,18 +1,19 @@
-import React, {PropTypes} from 'react'
-import './Button.css'
+import PropTypes from 'prop-types';
+import './Button.css';
 
-const Button = (props) => {
-  const onClick = () => {
-    if (props.sound && props.player) {
-      props.player(props.sound);
+function Button({ text, img, onClick, sound, player }) {
+  const handleClick = () => {
+    if (sound && player) {
+      player(sound);
     }
-    props.onClick()
-  }
+    onClick();
+  };
+
   return (
-    <div className="Button" title={props.text} onClick={onClick}>
-      <img src={props.img} alt={props.text} />
+    <div className="Button" title={text} onClick={handleClick}>
+      <img src={img} alt={text} />
     </div>
-  )
+  );
 }
 
 Button.propTypes = {
@@ -21,6 +22,6 @@ Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   sound: PropTypes.string,
   player: PropTypes.func,
-}
+};
 
-export default Button
+export default Button;
