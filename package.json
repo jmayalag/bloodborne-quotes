@@ -1,24 +1,38 @@
 {
   "name": "bloodborne-quotes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "react-scripts": "0.8.5"
-  },
   "dependencies": {
-    "gsap": "^1.19.1",
-    "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2",
-    "react-addons-transition-group": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "gsap": "^3.12.5",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "gh-pages": "^6.1.1",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn run build&&gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   },
-  "homepage": "https://jmayalag.github.io/bloodborne-quotes/"
+  "homepage": "https://jmayalag.github.io/bloodborne-quotes/",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

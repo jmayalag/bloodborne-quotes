@@ -1,69 +1,134 @@
-import React, {PropTypes, Component} from 'react'
-import TransitionGroup from 'react-addons-transition-group'
-import {TweenLite, TweenMax, Power1, Power4} from 'gsap';
-import './Message.css'
+import { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { TransitionGroup, Transition } from 'react-transition-group';
+import gsap from 'gsap';
+import './Message.css';
 
-const duration = 1.5;
-const ease = Power1.easeIn
-const dx = 40
+const DURATION = 1.5;
+const EASE = 'power1.in';
+const DX = 40;
 
-class MessageContainer extends Component {
-  componentWillEnter (callback) {
-    TweenLite.from(this.left, duration, {
-      opacity: 0,
-      x: `-=${dx}px`,
-      ease: ease
-    })
-    TweenLite.from(this.right, duration, {
-      opacity: 0,
-      x: `+=${dx}px`,
-      ease: ease
-    })
-    TweenLite.from(this.shine, 1, {
-      opacity: 0,
-      ease: Power4.easeIn,
-      delay: duration,
-      onComplete: callback
-    })
-  }
+function MessageContainer({ message, onEnter, onExit }) {
+  const containerRef = useRef(null);
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const shineRef = useRef(null);
+  const nodeRef = useRef(null);
 
-  componentWillLeave (callback) {
-    const el = this.left
-    TweenLite.to(this.container, duration, {
+  const handleEnter = () => {
+    gsap.from(leftRef.current, {
       opacity: 0,
-      ease: ease,
-      onComplete: callback
-    })
-  }
+      x: -DX,
+      duration: DURATION,
+      ease: EASE,
+    });
+    gsap.from(rightRef.current, {
+      opacity: 0,
+      x: DX,
+      duration: DURATION,
+      ease: EASE,
+    });
+    gsap.from(shineRef.current, {
+      opacity: 0,
+      duration: 1,
+      ease: 'power4.in',
+      delay: DURATION,
+      onComplete: onEnter,
+    });
+  };
 
-  render() {
-    return (
-      <div className="Message-container" ref={c => this.container = c}>
-        <div className="Message-text left" style={{color: this.props.message.color}} ref={c => this.left = c}>
-          {this.props.message.text}
+  const handleExit = () => {
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      duration: DURATION,
+      ease: EASE,
+      onComplete: onExit,
+    });
+  };
+
+  useEffect(() => {
+    handleEnter();
+  }, []);
+
+  return (
+    <div ref={nodeRef}>
+      <div className="Message-container" ref={containerRef}>
+        <div
+          className="Message-text left"
+          style={{ color: message.color ?? 'white' }}
+          ref={leftRef}
+        >
+          {message.text}
         </div>
-        <div className="Message-text shine" style={{color: this.props.message.color}} ref={c => this.shine = c}>
-          {this.props.message.text}
+        <div
+          className="Message-text shine"
+          style={{ color: message.color ?? 'white' }}
+          ref={shineRef}
+        >
+          {message.text}
         </div>
-        <div className="Message-text right" style={{color: this.props.message.color}} ref={c => this.right = c}>
-          {this.props.message.text}
+        <div
+          className="Message-text right"
+          style={{ color: message.color ?? 'white' }}
+          ref={rightRef}
+        >
+          {message.text}
         </div>
       </div>
-    )
-  }
+    </div>
+  );
 }
 
-const Message = (props) => {
-  if (props.showMessage && props.message.sound && props.player) {
-    props.player(props.message.sound)
-  }
+MessageContainer.propTypes = {
+  message: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    color: PropTypes.string,
+    sound: PropTypes.string,
+  }).isRequired,
+  onEnter: PropTypes.func,
+  onExit: PropTypes.func,
+};
+
+function Message({ message, player, showMessage }) {
+  const nodeRef = useRef(null);
+  const hasPlayedRef = useRef(false);
+
+  useEffect(() => {
+    if (showMessage && message.sound && player && !hasPlayedRef.current) {
+      player(message.sound);
+      hasPlayedRef.current = true;
+    }
+    if (!showMessage) {
+      hasPlayedRef.current = false;
+    }
+  }, [showMessage, message, player]);
+
   return (
     <div className="Message">
-      <TransitionGroup>
-        {props.showMessage && <MessageContainer message={props.message} />}
+      <TransitionGroup component={null}>
+        {showMessage && (
+          <Transition
+            key={message.text}
+            nodeRef={nodeRef}
+            timeout={DURATION * 1000}
+            onExiting={() => {
+              if (nodeRef.current) {
+                gsap.to(nodeRef.current, {
+                  opacity: 0,
+                  duration: DURATION,
+                  ease: EASE,
+                });
+              }
+            }}
+          >
+            <div ref={nodeRef}>
+              <MessageContainer message={message} />
+            </div>
+          </Transition>
+        )}
       </TransitionGroup>
     </div>
-  )
+  );
 }
 
 Message.propTypes = {
@@ -74,12 +139,6 @@ Message.propTypes = {
   }).isRequired,
   player: PropTypes.func,
   showMessage: PropTypes.bool.isRequired,
-}
+};
 
-Message.defaultProps = {
-  message: {
-    color: 'white',
-  }
-}
-
-export default Message
+export default Message;
